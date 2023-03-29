@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-  const grid = [];
+  const grid = ['X', 'O', 'O', 'X', 'O', 'X', 'O', 'X', 'O'];
   const size = 9;
 
   const add = (position, symbol) => {
@@ -33,3 +33,17 @@ const player = (name, symbol) => {
 
   return { getName, getSymbol, getScore, addPoint };
 };
+
+const displayController = (() => {
+  const cells = document.querySelectorAll('.cell');
+
+  const render = () => {
+    let index = 0;
+    Object.keys(cells).forEach((key) => {
+      cells[key].textContent = gameBoard.getGrid()[index];
+      index += 1;
+    });
+  };
+
+  return { render };
+})();
