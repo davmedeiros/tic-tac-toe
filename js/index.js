@@ -242,5 +242,6 @@ const displayController = (() => {
 
   setBoardEvents();
   setNewGameEvent();
+
   return { render };
 })();

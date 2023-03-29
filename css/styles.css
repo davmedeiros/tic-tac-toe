@@ -25,7 +25,6 @@ main {
 }
 
 #game-board {
-  width: 512px;
   aspect-ratio: 1 / 1;
   display: grid;
   gap: 10px;
@@ -54,19 +53,44 @@ main {
 
 .controls {
   display: grid;
-  grid-template: 30px / repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--grid-gap);
 }
 
-.controls > button {
+button {
   border-radius: var(--container-border-radius);
   background-color: var(--cells-color);
   color: var(--base-color);
   border: none;
   cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 10px;
 }
 
 #game-board > div.locked {
   pointer-events: none;
   background-color: var(--text);
+}
+
+#players-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--grid-gap);
+}
+
+#players-form > div {
+  display: grid;
+  gap: 5px;
+}
+
+#players-form > button {
+  grid-column: 1 / -1;
+}
+
+input {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: var(--container-border-radius);
 }
