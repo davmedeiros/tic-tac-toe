@@ -66,6 +66,7 @@ main {
   cursor: pointer;
 }
 
-.locked {
+#game-board > div.locked {
   pointer-events: none;
+  background-color: var(--text);
 }
