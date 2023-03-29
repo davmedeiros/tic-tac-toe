@@ -210,7 +210,7 @@ const displayController = (() => {
 
   const setNewGameEvent = () => {
     newGameButton.addEventListener('click', () => {
-      game.reset()
+      game.reset();
       setMessage('Playing');
       displayController.render();
     });
@@ -227,6 +227,6 @@ const displayController = (() => {
   };
 
   setBoardEvents();
-  setNewGameEvent()
+  setNewGameEvent();
   return { render };
 })();
