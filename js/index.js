@@ -192,6 +192,7 @@ const displayController = (() => {
   const board = document.querySelectorAll('.cell');
   const message = document.querySelector('.message');
   const newGameButton = document.querySelector('#new-game');
+  const playersForm = document.querySelector('#players-form')
 
   const setMessage = (text) => {
     message.textContent = text;

@@ -24,7 +24,12 @@ main {
   color: var(--text);
 }
 
+h1 {
+  place-self: center;
+}
+
 #game-board {
+  width: 512px;
   aspect-ratio: 1 / 1;
   display: grid;
   gap: 10px;
@@ -82,6 +87,8 @@ button {
 #players-form > div {
   display: grid;
   gap: 5px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 40px;
 }
 
 #players-form > button {
@@ -91,6 +98,11 @@ button {
 input {
   border: none;
   outline: none;
-  padding: 10px;
   border-radius: var(--container-border-radius);
+  height: 100%;
+  text-indent: 10px;
+}
+
+#players-form.hidden {
+  display: none;
 }
