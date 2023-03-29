@@ -38,9 +38,11 @@ const displayController = (() => {
   const cells = document.querySelectorAll('.cell');
 
   const render = () => {
+    const grid = gameBoard.getGrid();
     let index = 0;
+
     Object.keys(cells).forEach((key) => {
-      cells[key].textContent = gameBoard.getGrid()[index];
+      cells[key].textContent = grid[index];
       index += 1;
     });
   };
