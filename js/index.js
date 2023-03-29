@@ -56,6 +56,34 @@ const game = (() => {
     }
   };
 
+  const checkWinner = () => {
+    const grid = gameBoard.getGrid();
+
+    // TODO: Define winning logic.
+    // if 0, 1, 2
+    // if 0, 3, 6
+    // if 0, 4, 8
+    // if 1, 4, 7
+    // if 2, 4, 6
+    // if 2, 5, 8
+    // if 3, 4, 5
+    // if 6, 7, 8
+    // It ain't pretty, but it's honest work.
+    let index = 0;
+    grid.forEach((cell) => {
+      if (index === 0) {
+        if (grid[0] && grid[1] && grid[2]) {
+          if (grid[0] === grid[1] && grid[1] === grid[2]) {
+            console.log(`Player ${currentPlayer.getName()} won!`);
+          }
+        }
+      }
+      index += 1;
+    });
+
+    return false;
+  };
+
   const markCell = (position) => {
     gameBoard.add(position, currentPlayer.getSymbol());
   };
@@ -64,7 +92,7 @@ const game = (() => {
   setPlayer1('Joe', 'X');
   setPlayer2('Amy', 'O');
 
-  return { setPlayer1, setPlayer2, switchPlayer, markCell };
+  return { setPlayer1, setPlayer2, switchPlayer, markCell, checkWinner };
 })();
 
 const displayController = (() => {
@@ -74,8 +102,9 @@ const displayController = (() => {
     Object.keys(board).forEach((cell) => {
       board[cell].addEventListener('click', (e) => {
         game.markCell(e.target.dataset.indexNumber);
-        game.switchPlayer();
         displayController.render();
+        game.checkWinner();
+        game.switchPlayer();
       });
     });
   };
