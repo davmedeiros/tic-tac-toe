@@ -19,5 +19,7 @@ const gameBoard = (() => {
     return 0;
   };
 
-  return { add };
+  const clear = () => grid.splice(0, grid.length);
+
+  return { add, clear };
 })();
