@@ -192,18 +192,27 @@ const game = (() => {
 const displayController = (() => {
   const board = document.querySelectorAll('.cell');
   const message = document.querySelector('.message');
+  const newGameButton = document.querySelector('#new-game');
 
   const setMessage = (text) => {
     message.textContent = text;
   };
 
-  const setEvents = () => {
+  const setBoardEvents = () => {
     Object.keys(board).forEach((cell) => {
       board[cell].addEventListener('click', (e) => {
         const cellClicked = e.target.dataset.indexNumber;
         setMessage(game.playRound(cellClicked));
         displayController.render();
       });
+    });
+  };
+
+  const setNewGameEvent = () => {
+    newGameButton.addEventListener('click', (e) => {
+      game.reset()
+      setMessage('Playing');
+      displayController.render();
     });
   };
 
@@ -217,6 +226,7 @@ const displayController = (() => {
     });
   };
 
-  setEvents();
+  setBoardEvents();
+  setNewGameEvent()
   return { render };
 })();
