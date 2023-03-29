@@ -35,23 +35,9 @@ const player = (name, symbol) => {
 };
 
 const game = (() => {
-  const players = [];
-
-  const addPlayer = (name, symbol) => {
-    if (players.length >= 2) return 1;
-
-    players.push(player(name, symbol));
-    return 0;
-  };
-
-  const clearPlayers = () => {
-    players.splice(0, players.length);
-  };
-
   const reset = () => {
     gameBoard.clear();
-    clearPlayers();
   };
 
-  return { addPlayer, reset };
+  return { reset };
 })();
