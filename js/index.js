@@ -173,9 +173,8 @@ const game = (() => {
     return [`${currentPlayer.getName()}'s turn`, false];
   };
 
-  // TODO: Remove test call
-  setPlayer1('Joe', 'X');
-  setPlayer2('Amy', 'O');
+  setPlayer1('Player 1', 'X');
+  setPlayer2('Player 2', 'O');
 
   return {
     setPlayer1,
@@ -200,7 +199,7 @@ const displayController = (() => {
 
   const toggleLockBoard = () => {
     Object.keys(board).forEach((cell) => {
-      board[cell].classList.toggle('locked')
+      board[cell].classList.toggle('locked');
     });
   };
 
@@ -210,7 +209,6 @@ const displayController = (() => {
     displayController.render();
     toggleLockBoard();
   };
-
 
   const markCell = (e) => {
     const cellClicked = e.target.dataset.indexNumber;
