@@ -3,13 +3,9 @@ const gameBoard = (() => {
   const size = 9;
 
   const add = (position, symbol) => {
-    if (position < 0 || position > size) {
-      return `Enter a position between 0 and ${size}.`;
-    }
+    if (position < 0 || position > size) return 1;
 
-    if (grid[position] !== undefined) {
-      return `The position ${position} is already filled.`;
-    }
+    if (grid[position] !== undefined) return 2;
 
     grid[position] = symbol;
     return 0;
