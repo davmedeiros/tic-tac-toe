@@ -144,11 +144,28 @@ const game = (() => {
 
   const getCurrentPlayer = () => currentPlayer;
 
+  const playRound = (index) => {
+    game.markCell(index);
+    if (game.checkWinner()) {
+      return currentPlayer.getName();
+    }
+    game.switchPlayer();
+    return false;
+  };
+
   // TODO: Remove test call
   setPlayer1('Joe', 'X');
   setPlayer2('Amy', 'O');
 
-  return { setPlayer1, setPlayer2, switchPlayer, markCell, checkWinner, getCurrentPlayer };
+  return {
+    setPlayer1,
+    setPlayer2,
+    switchPlayer,
+    markCell,
+    checkWinner,
+    getCurrentPlayer,
+    playRound
+  };
 })();
 
 const displayController = (() => {
@@ -157,18 +174,19 @@ const displayController = (() => {
 
   const setMessage = (text) => {
     message.textContent = text;
-  }
+  };
 
   const setEvents = () => {
     Object.keys(board).forEach((cell) => {
       board[cell].addEventListener('click', (e) => {
-        const index = e.target.dataset.indexNumber;
-        game.markCell(index);
-        displayController.render();
-        if (game.checkWinner()) {
-          setMessage(`Player ${game.getCurrentPlayer().getName()} won`);
+        const cellClicked = e.target.dataset.indexNumber;
+        const winner = game.playRound(cellClicked);
+        if (winner) {
+          setMessage(`${winner} won`);
+        } else {
+          setMessage(`${game.getCurrentPlayer().getName()}'s turn`)
         }
-        game.switchPlayer();
+        displayController.render();
       });
     });
   };
