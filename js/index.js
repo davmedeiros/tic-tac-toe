@@ -209,7 +209,7 @@ const displayController = (() => {
   };
 
   const setNewGameEvent = () => {
-    newGameButton.addEventListener('click', (e) => {
+    newGameButton.addEventListener('click', () => {
       game.reset()
       setMessage('Playing');
       displayController.render();
