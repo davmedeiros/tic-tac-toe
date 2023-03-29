@@ -7,10 +7,6 @@ const gameBoard = (() => {
       return `Enter a position between 0 and ${size}.`;
     }
 
-    if (symbol !== 'X' && symbol !== 'O') {
-      return 'Enter a valid symbol [X, O].';
-    }
-
     if (grid[position] !== undefined) {
       return `The position ${position} is already filled.`;
     }
