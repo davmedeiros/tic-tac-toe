@@ -136,13 +136,13 @@ const game = (() => {
       }
 
       if (grid[index]) {
-        filledCellsCount += 1
+        filledCellsCount += 1;
       }
       index += 1;
     });
 
     if (filledCellsCount === 9 && result !== 'win') {
-      return 'tie'
+      return 'tie';
     }
 
     return result;
@@ -153,6 +153,10 @@ const game = (() => {
   };
 
   const getCurrentPlayer = () => currentPlayer;
+
+  const reset = () => {
+    gameBoard.clear();
+  };
 
   const playRound = (index) => {
     game.markCell(index);
@@ -181,6 +185,7 @@ const game = (() => {
     checkWinner,
     getCurrentPlayer,
     playRound,
+    reset,
   };
 })();
 
