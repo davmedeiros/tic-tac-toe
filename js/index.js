@@ -7,7 +7,7 @@ const gameBoard = (() => {
       return `Enter a position between 0 and ${size}.`;
     }
 
-    if (symbol !== 'X' || symbol !== 'O') {
+    if (symbol !== 'X' && symbol !== 'O') {
       return 'Enter a valid symbol [X, O].';
     }
 
@@ -15,11 +15,13 @@ const gameBoard = (() => {
       return `The position ${position} is already filled.`;
     }
 
-    grid.splice(position, 1, symbol);
+    grid[position] = symbol;
     return 0;
   };
 
   const clear = () => grid.splice(0, grid.length);
 
-  return { add, clear };
+  const get = () => grid;
+
+  return { add, clear, get };
 })();
