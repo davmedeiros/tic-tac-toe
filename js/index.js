@@ -34,13 +34,48 @@ const player = (name, symbol) => {
   return { getName, getSymbol, getScore, addPoint };
 };
 
+const game = (() => {
+  let player1 = {};
+  let player2 = {};
+  let currentPlayer = {};
+
+  const setPlayer1 = (name, symbol) => {
+    player1 = player(name, symbol);
+    currentPlayer = player1;
+  };
+
+  const setPlayer2 = (name, symbol) => {
+    player2 = player(name, symbol);
+  };
+
+  const switchPlayer = () => {
+    if (player1 === currentPlayer) {
+      currentPlayer = player2;
+    } else {
+      currentPlayer = player1;
+    }
+  };
+
+  const markCell = (position) => {
+    gameBoard.add(position, currentPlayer.getSymbol());
+  };
+
+  // TODO: Remove test call
+  setPlayer1('Joe', 'X');
+  setPlayer2('Amy', 'O');
+
+  return { setPlayer1, setPlayer2, switchPlayer, markCell };
+})();
+
 const displayController = (() => {
   const board = document.querySelectorAll('.cell');
 
   const init = () => {
     Object.keys(board).forEach((cell) => {
       board[cell].addEventListener('click', (e) => {
-        console.log(e.target.textContent);
+        game.markCell(e.target.dataset.indexNumber);
+        game.switchPlayer();
+        displayController.render();
       });
     });
   };
@@ -57,32 +92,4 @@ const displayController = (() => {
 
   init();
   return { render };
-})();
-
-const game = (() => {
-  let player1 = {};
-  let player2 = {};
-  let currentPlayer = {};
-
-  const setPlayer1 = (name, symbol) => {
-    player1 = player.add(name, symbol);
-  };
-
-  const setPlayer2 = (name, symbol) => {
-    player2 = player.add(name, symbol);
-  };
-
-  const switchPlayer = () => {
-    if (player1.getName() === currentPlayer.getName()) {
-      currentPlayer = player2;
-    } else {
-      currentPlayer = player1;
-    }
-  };
-
-  const markCell = (position) => {
-    gameBoard.add(position, currentPlayer.getSymbol());
-  };
-
-  return { setPlayer1, setPlayer2, switchPlayer, markCell };
 })();
