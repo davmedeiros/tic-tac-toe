@@ -153,6 +153,11 @@ const game = (() => {
 
 const displayController = (() => {
   const board = document.querySelectorAll('.cell');
+  const message = document.querySelector('.message');
+
+  const setMessage = (text) => {
+    message.textContent = text;
+  }
 
   const setEvents = () => {
     Object.keys(board).forEach((cell) => {
@@ -161,7 +166,7 @@ const displayController = (() => {
         game.markCell(index);
         displayController.render();
         if (game.checkWinner()) {
-          console.log(`Player ${game.getCurrentPlayer().getName()} won`);
+          setMessage(`Player ${game.getCurrentPlayer().getName()} won`);
         }
         game.switchPlayer();
       });
