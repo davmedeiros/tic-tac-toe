@@ -33,7 +33,7 @@ main {
   overflow: hidden;
 }
 
-#game-board > * {
+#game-board > div {
   display: grid;
   place-items: center;
   background-color: var(--cells-color);
@@ -41,4 +41,12 @@ main {
   font-size: 8rem;
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.6);
   cursor: pointer;
+}
+
+.message-bubble {
+  background-color: var(--text);
+  border-radius: var(--container-border-radius);
+  color: var(--base-color);
+  display: grid;
+  place-items: center;
 }
