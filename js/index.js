@@ -8,13 +8,16 @@ const gameBoard = (() => {
     }
 
     if (symbol !== 'X' || symbol !== 'O') {
-      return 'Enter a valid symbol [X, O].'
+      return 'Enter a valid symbol [X, O].';
     }
 
     if (grid[position] !== undefined) {
-      return `The position ${position} is already filled.`
+      return `The position ${position} is already filled.`;
     }
 
     grid.splice(position, 1, symbol);
+    return 0;
   };
+
+  return { add };
 })();
