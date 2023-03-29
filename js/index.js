@@ -60,13 +60,31 @@ const displayController = (() => {
 })();
 
 const game = (() => {
+  let player1 = {};
+  let player2 = {};
+  let currentPlayer = {};
+
+  const init = () => {
+    player1 = player('Joe', 'X');
+    player2 = player('Amy', 'O');
+  };
+
+  const switchPlayer = () => {
+    if (player1.getName() === currentPlayer.getName()) {
+      currentPlayer = player2;
+    } else {
+      currentPlayer = player1;
+    }
+  };
+
+  const markCell = (position) => {
+    gameBoard.add(position, currentPlayer.getSymbol());
+  };
   /**
    * TODO: Remove tests
    *
    * The game should be fully playable from the terminal.
    */
-  const player1 = player('Joe', 'X');
-  const player2 = player('Amy', 'O');
   gameBoard.add(4, player1.getSymbol());
   displayController.render();
   gameBoard.add(2, player2.getSymbol());
