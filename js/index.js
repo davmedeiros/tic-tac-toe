@@ -33,11 +33,3 @@ const player = (name, symbol) => {
 
   return { getName, getSymbol, getScore, addPoint };
 };
-
-const game = (() => {
-  const reset = () => {
-    gameBoard.clear();
-  };
-
-  return { reset };
-})();
