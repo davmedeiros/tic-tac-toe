@@ -162,15 +162,15 @@ const game = (() => {
     game.markCell(index);
     const result = game.checkWinner();
     if (result === 'win') {
-      return `${currentPlayer.getName()} won`;
+      return [`${currentPlayer.getName()} won`, true];
     }
 
     if (result === 'tie') {
-      return `It's a tie`;
+      return [`It's a tie`, true];
     }
 
     game.switchPlayer();
-    return `${currentPlayer.getName()}'s turn`;
+    return [`${currentPlayer.getName()}'s turn`, false];
   };
 
   // TODO: Remove test call
@@ -198,22 +198,38 @@ const displayController = (() => {
     message.textContent = text;
   };
 
+  const toggleLockBoard = () => {
+    Object.keys(board).forEach((cell) => {
+      board[cell].classList.toggle('locked')
+    });
+  };
+
+  const startNewGame = () => {
+    game.reset();
+    setMessage('Playing');
+    displayController.render();
+    toggleLockBoard();
+  };
+
+
+  const markCell = (e) => {
+    const cellClicked = e.target.dataset.indexNumber;
+    const [result, hasEnded] = game.playRound(cellClicked);
+    setMessage(result);
+    displayController.render();
+    if (hasEnded) {
+      toggleLockBoard();
+    }
+  };
+
   const setBoardEvents = () => {
     Object.keys(board).forEach((cell) => {
-      board[cell].addEventListener('click', (e) => {
-        const cellClicked = e.target.dataset.indexNumber;
-        setMessage(game.playRound(cellClicked));
-        displayController.render();
-      });
+      board[cell].addEventListener('click', markCell);
     });
   };
 
   const setNewGameEvent = () => {
-    newGameButton.addEventListener('click', () => {
-      game.reset();
-      setMessage('Playing');
-      displayController.render();
-    });
+    newGameButton.addEventListener('click', startNewGame);
   };
 
   const render = () => {
