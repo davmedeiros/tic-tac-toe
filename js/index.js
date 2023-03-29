@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-  const grid = ['X', 'O', 'O', 'X', 'O', 'X', 'O', 'X', 'O'];
+  const grid = [];
   const size = 9;
 
   const add = (position, symbol) => {
@@ -48,4 +48,18 @@ const displayController = (() => {
   };
 
   return { render };
+})();
+
+const game = (() => {
+  /**
+   * TODO: Remove tests
+   *
+   * The game should be fully playable from the terminal.
+   */
+  const player1 = player('Joe', 'X');
+  const player2 = player('Amy', 'O');
+  gameBoard.add(4, player1.getSymbol());
+  displayController.render();
+  gameBoard.add(2, player2.getSymbol());
+  displayController.render();
 })();
