@@ -40,4 +40,5 @@ main {
   color: var(--base-color);
   font-size: 8rem;
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
 }
