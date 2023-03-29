@@ -1,0 +1,27 @@
+body,
+header,
+main {
+  padding: 20px;
+  display: grid;
+  justify-content: center;
+  gap: 20px;
+}
+
+header,
+main {
+  outline: 1px dashed blue;
+}
+
+#game-board {
+  outline: 1px dashed red;
+  width: 512px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+#game-board > * {
+  outline: 1px dashed green;
+  display: grid;
+  place-items: center;
+}
