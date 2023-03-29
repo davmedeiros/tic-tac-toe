@@ -64,9 +64,12 @@ const game = (() => {
   let player2 = {};
   let currentPlayer = {};
 
-  const init = () => {
-    player1 = player('Joe', 'X');
-    player2 = player('Amy', 'O');
+  const setPlayer1 = (name, symbol) => {
+    player1 = player.add(name, symbol);
+  };
+
+  const setPlayer2 = (name, symbol) => {
+    player2 = player.add(name, symbol);
   };
 
   const switchPlayer = () => {
@@ -80,13 +83,6 @@ const game = (() => {
   const markCell = (position) => {
     gameBoard.add(position, currentPlayer.getSymbol());
   };
-  /**
-   * TODO: Remove tests
-   *
-   * The game should be fully playable from the terminal.
-   */
-  gameBoard.add(4, player1.getSymbol());
-  displayController.render();
-  gameBoard.add(2, player2.getSymbol());
-  displayController.render();
+
+  return { setPlayer1, setPlayer2, switchPlayer, markCell };
 })();
