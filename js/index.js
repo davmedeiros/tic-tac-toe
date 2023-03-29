@@ -17,7 +17,23 @@ const gameBoard = (() => {
 
   const clear = () => grid.splice(0, grid.length);
 
-  const get = () => grid;
+  const getGrid = () => grid;
 
-  return { add, clear, get };
+  return { add, clear, getGrid };
 })();
+
+const player = (name, symbol) => {
+  let score = 0;
+
+  const getName = () => name;
+
+  const getSymbol = () => symbol;
+
+  const getScore = () => score;
+
+  const addPoint = () => {
+    score += 1;
+  };
+
+  return { getName, getSymbol, getScore, addPoint };
+};
