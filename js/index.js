@@ -35,14 +35,14 @@ const player = (name, symbol) => {
 };
 
 const displayController = (() => {
-  const cells = document.querySelectorAll('.cell');
+  const board = document.querySelectorAll('.cell');
 
   const render = () => {
     const grid = gameBoard.getGrid();
     let index = 0;
 
-    Object.keys(cells).forEach((key) => {
-      cells[key].textContent = grid[index];
+    Object.keys(board).forEach((cell) => {
+      board[cell].textContent = grid[index];
       index += 1;
     });
   };
