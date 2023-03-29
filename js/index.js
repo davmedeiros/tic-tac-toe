@@ -59,29 +59,83 @@ const game = (() => {
   const checkWinner = () => {
     const grid = gameBoard.getGrid();
 
-    // TODO: Define winning logic.
-    // if 0, 1, 2
-    // if 0, 3, 6
-    // if 0, 4, 8
-    // if 1, 4, 7
-    // if 2, 4, 6
-    // if 2, 5, 8
-    // if 3, 4, 5
-    // if 6, 7, 8
-    // It ain't pretty, but it's honest work.
+    // TODO: Refractor
+    let isWinner = false;
     let index = 0;
-    grid.forEach((cell) => {
-      if (index === 0) {
-        if (grid[0] && grid[1] && grid[2]) {
-          if (grid[0] === grid[1] && grid[1] === grid[2]) {
-            console.log(`Player ${currentPlayer.getName()} won!`);
+    grid.forEach(() => {
+      switch (Number(index)) {
+        case 0:
+          if (grid[0] && grid[1] && grid[2]) {
+            if (grid[0] === grid[1] && grid[1] === grid[2]) {
+              isWinner = true;
+              return;
+            }
           }
-        }
+
+          if (grid[0] && grid[3] && grid[6]) {
+            if (grid[0] === grid[3] && grid[3] === grid[6]) {
+              isWinner = true;
+              return;
+            }
+          }
+
+          if (grid[0] && grid[4] && grid[8]) {
+            if (grid[0] === grid[4] && grid[4] === grid[8]) {
+              isWinner = true;
+              return;
+            }
+          }
+
+          break;
+        case 1:
+          if (grid[1] && grid[4] && grid[7]) {
+            if (grid[1] === grid[4] && grid[4] === grid[7]) {
+              isWinner = true;
+              return;
+            }
+          }
+
+          break;
+        case 2:
+          if (grid[2] && grid[4] && grid[6]) {
+            if (grid[2] === grid[4] && grid[4] === grid[6]) {
+              isWinner = true;
+              return;
+            }
+          }
+
+          if (grid[2] && grid[5] && grid[8]) {
+            if (grid[2] === grid[5] && grid[5] === grid[8]) {
+              isWinner = true;
+              return;
+            }
+          }
+
+          break;
+        case 3:
+          if (grid[3] && grid[4] && grid[5]) {
+            if (grid[3] === grid[4] && grid[4] === grid[5]) {
+              isWinner = true;
+              return;
+            }
+          }
+
+          break;
+        case 6:
+          if (grid[6] && grid[7] && grid[8]) {
+            if (grid[6] === grid[7] && grid[7] === grid[8]) {
+              isWinner = true;
+              return;
+            }
+          }
+
+          break;
+        default:
+          return;
       }
       index += 1;
     });
-
-    return false;
+    return isWinner;
   };
 
   const markCell = (position) => {
@@ -101,9 +155,10 @@ const displayController = (() => {
   const init = () => {
     Object.keys(board).forEach((cell) => {
       board[cell].addEventListener('click', (e) => {
-        game.markCell(e.target.dataset.indexNumber);
+        const index = e.target.dataset.indexNumber;
+        game.markCell(index);
         displayController.render();
-        game.checkWinner();
+        console.log(game.checkWinner());
         game.switchPlayer();
       });
     });
