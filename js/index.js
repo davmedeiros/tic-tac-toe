@@ -142,23 +142,27 @@ const game = (() => {
     gameBoard.add(position, currentPlayer.getSymbol());
   };
 
+  const getCurrentPlayer = () => currentPlayer;
+
   // TODO: Remove test call
   setPlayer1('Joe', 'X');
   setPlayer2('Amy', 'O');
 
-  return { setPlayer1, setPlayer2, switchPlayer, markCell, checkWinner };
+  return { setPlayer1, setPlayer2, switchPlayer, markCell, checkWinner, getCurrentPlayer };
 })();
 
 const displayController = (() => {
   const board = document.querySelectorAll('.cell');
 
-  const init = () => {
+  const setEvents = () => {
     Object.keys(board).forEach((cell) => {
       board[cell].addEventListener('click', (e) => {
         const index = e.target.dataset.indexNumber;
         game.markCell(index);
         displayController.render();
-        console.log(game.checkWinner());
+        if (game.checkWinner()) {
+          console.log(`Player ${game.getCurrentPlayer().getName()} won`);
+        }
         game.switchPlayer();
       });
     });
@@ -174,6 +178,6 @@ const displayController = (() => {
     });
   };
 
-  init();
+  setEvents();
   return { render };
 })();
