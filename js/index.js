@@ -162,7 +162,7 @@ const game = (() => {
     game.markCell(index);
     const result = game.checkWinner();
     if (result === 'win') {
-      return `${currentPlayer.getName()} own`;
+      return `${currentPlayer.getName()} won`;
     }
 
     if (result === 'tie') {
