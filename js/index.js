@@ -37,12 +37,17 @@ const player = (name, symbol) => {
 const displayController = (() => {
   const board = document.querySelectorAll('.cell');
 
+  const addInteraction = (event) => {
+    console.log(`clicked ${event.target.textContent}`);
+  }
+
   const render = () => {
     const grid = gameBoard.getGrid();
     let index = 0;
 
     Object.keys(board).forEach((cell) => {
       board[cell].textContent = grid[index];
+      board[cell].addEventListener('click', addInteraction);
       index += 1;
     });
   };
@@ -51,6 +56,7 @@ const displayController = (() => {
 })();
 
 const game = (() => {
+  
   /**
    * TODO: Remove tests
    *
