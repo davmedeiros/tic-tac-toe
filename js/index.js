@@ -15,7 +15,9 @@ const gameBoard = (() => {
 
   const getGrid = () => grid;
 
-  return { add, clear, getGrid };
+  const getSize = () => size;
+
+  return { add, clear, getGrid, getSize };
 })();
 
 const player = (name, symbol, isAI = false) => {
@@ -75,7 +77,8 @@ const game = (() => {
     // TODO: Refractor
     let result = '';
     let filledCellsCount = 0;
-    for (let index = 0; index < 9; index += 1) {
+    const gridSize = gameBoard.getSize()
+    for (let index = 0; index < gridSize; index += 1) {
       switch (Number(index)) {
         case 0:
           if (grid[0] && grid[1] && grid[2]) {
