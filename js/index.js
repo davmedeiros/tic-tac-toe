@@ -18,7 +18,7 @@ const gameBoard = (() => {
   return { add, clear, getGrid };
 })();
 
-const player = (name, symbol) => {
+const player = (name, symbol, isAI = false) => {
   let score = 0;
 
   const getName = () => name;
@@ -31,7 +31,9 @@ const player = (name, symbol) => {
     score += 1;
   };
 
-  return { getName, getSymbol, getScore, addPoint };
+  const isAutomated = () => isAI;
+
+  return { getName, getSymbol, getScore, addPoint, isAutomated };
 };
 
 const game = (() => {
