@@ -215,7 +215,7 @@ const displayController = (() => {
 
   const lockBoard = () => {
     Object.keys(board).forEach((cell) => {
-      board[cell].classList.toggle('locked');
+      board[cell].classList.add('locked');
     });
   };
 
