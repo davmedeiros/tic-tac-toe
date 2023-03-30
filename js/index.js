@@ -74,29 +74,28 @@ const game = (() => {
 
     // TODO: Refractor
     let result = '';
-    let index = 0;
     let filledCellsCount = 0;
-    grid.forEach(() => {
+    for (let index = 0; index < 9; index += 1) {
       switch (Number(index)) {
         case 0:
           if (grid[0] && grid[1] && grid[2]) {
             if (grid[0] === grid[1] && grid[1] === grid[2]) {
               result = 'win';
-              return;
+              return false;
             }
           }
 
           if (grid[0] && grid[3] && grid[6]) {
             if (grid[0] === grid[3] && grid[3] === grid[6]) {
               result = 'win';
-              return;
+              break;
             }
           }
 
           if (grid[0] && grid[4] && grid[8]) {
             if (grid[0] === grid[4] && grid[4] === grid[8]) {
               result = 'win';
-              return;
+              break;
             }
           }
 
@@ -105,7 +104,7 @@ const game = (() => {
           if (grid[1] && grid[4] && grid[7]) {
             if (grid[1] === grid[4] && grid[4] === grid[7]) {
               result = 'win';
-              return;
+              break;
             }
           }
 
@@ -114,14 +113,14 @@ const game = (() => {
           if (grid[2] && grid[4] && grid[6]) {
             if (grid[2] === grid[4] && grid[4] === grid[6]) {
               result = 'win';
-              return;
+              break;
             }
           }
 
           if (grid[2] && grid[5] && grid[8]) {
             if (grid[2] === grid[5] && grid[5] === grid[8]) {
               result = 'win';
-              return;
+              break;
             }
           }
 
@@ -130,7 +129,7 @@ const game = (() => {
           if (grid[3] && grid[4] && grid[5]) {
             if (grid[3] === grid[4] && grid[4] === grid[5]) {
               result = 'win';
-              return;
+              break;
             }
           }
 
@@ -139,7 +138,7 @@ const game = (() => {
           if (grid[6] && grid[7] && grid[8]) {
             if (grid[6] === grid[7] && grid[7] === grid[8]) {
               result = 'win';
-              return;
+              break;
             }
           }
 
@@ -151,8 +150,7 @@ const game = (() => {
       if (grid[index]) {
         filledCellsCount += 1;
       }
-      index += 1;
-    });
+    }
 
     if (filledCellsCount === 9 && result !== 'win') {
       return 'tie';
