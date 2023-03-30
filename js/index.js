@@ -41,13 +41,13 @@ const game = (() => {
   let player2 = {};
   let currentPlayer = {};
 
-  const setPlayer1 = (name, symbol) => {
-    player1 = player(name, symbol);
+  const setPlayer1 = (name, symbol, isAI = false) => {
+    player1 = player(name, symbol, isAI);
     currentPlayer = player1;
   };
 
-  const setPlayer2 = (name, symbol) => {
-    player2 = player(name, symbol);
+  const setPlayer2 = (name, symbol, isAI = false) => {
+    player2 = player(name, symbol, isAI);
   };
 
   const switchPlayer = () => {
@@ -56,6 +56,17 @@ const game = (() => {
     } else {
       currentPlayer = player1;
     }
+  };
+
+  const runAI = () => {
+    const grid = gameBoard.getGrid();
+    let index = null;
+
+    do {
+      index = Math.floor(Math.random() * 9);
+    } while (grid[index]);
+
+    return index;
   };
 
   const checkWinner = () => {
@@ -158,6 +169,7 @@ const game = (() => {
 
   const reset = () => {
     gameBoard.clear();
+    currentPlayer = player1;
   };
 
   const playRound = (index) => {
@@ -172,6 +184,11 @@ const game = (() => {
     }
 
     game.switchPlayer();
+
+    if (currentPlayer.isAutomated()) {
+      return playRound(runAI());
+    }
+
     return [`${currentPlayer.getName()}'s turn`, false];
   };
 
@@ -213,7 +230,7 @@ const displayController = (() => {
     game.setPlayer1(player1Field.value, 'X');
     game.setPlayer2(player2Field.value, 'O');
     togglePlayersForm();
-  }
+  };
 
   const lockBoard = () => {
     Object.keys(board).forEach((cell) => {
@@ -260,7 +277,7 @@ const displayController = (() => {
 
   const setConfirmPlayersEvent = () => {
     confirmPlayersButton.addEventListener('click', confirmPlayers);
-  }
+  };
 
   const render = () => {
     const grid = gameBoard.getGrid();
