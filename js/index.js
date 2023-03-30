@@ -20,8 +20,9 @@ const gameBoard = (() => {
   return { add, clear, getGrid, getSize };
 })();
 
-const player = (name, symbol, isAI = false) => {
+const player = (name, symbol) => {
   let score = 0;
+  let isAI = false;
 
   const getName = () => name;
 
@@ -35,7 +36,11 @@ const player = (name, symbol, isAI = false) => {
 
   const isAutomated = () => isAI;
 
-  return { getName, getSymbol, getScore, addPoint, isAutomated };
+  const toggleAI = () => {
+    isAI = !isAI;
+  }
+
+  return { getName, getSymbol, getScore, addPoint, isAutomated, toggleAI };
 };
 
 const game = (() => {
@@ -43,14 +48,18 @@ const game = (() => {
   let player2 = {};
   let currentPlayer = {};
 
-  const setPlayer1 = (name, symbol, isAI = false) => {
-    player1 = player(name, symbol, isAI);
+  const setPlayer1 = (name, symbol) => {
+    player1 = player(name, symbol);
     currentPlayer = player1;
   };
 
-  const setPlayer2 = (name, symbol, isAI = false) => {
-    player2 = player(name, symbol, isAI);
+  const setPlayer2 = (name, symbol) => {
+    player2 = player(name, symbol);
   };
+
+  const toggleAI = () => {
+    player2.toggleAI();
+  }
 
   const switchPlayer = () => {
     if (player1 === currentPlayer) {
@@ -205,6 +214,7 @@ const game = (() => {
     getCurrentPlayer,
     playRound,
     reset,
+    toggleAI,
   };
 })();
 
@@ -217,10 +227,17 @@ const displayController = (() => {
   const confirmPlayersButton = document.querySelector('#confirm-players');
   const player1Field = document.querySelector('#player1-name');
   const player2Field = document.querySelector('#player2-name');
+  const toggleAIButton = document.querySelector('#toggle-ai');
 
   const setMessage = (text) => {
     message.textContent = text;
   };
+
+  const toggleAI = () => {
+    game.toggleAI();
+    const text = toggleAIButton.textContent;
+    toggleAIButton.textContent = text === 'Enable AI' ? 'Disable AI' : 'Enable AI';
+  }
 
   const togglePlayersForm = () => {
     playersForm.classList.toggle('hidden');
@@ -280,6 +297,10 @@ const displayController = (() => {
     confirmPlayersButton.addEventListener('click', confirmPlayers);
   };
 
+  const setToggleAIEvent = () => {
+    toggleAIButton.addEventListener('click', toggleAI);
+  }
+
   const render = () => {
     const grid = gameBoard.getGrid();
     let index = 0;
@@ -294,6 +315,7 @@ const displayController = (() => {
   setNewGameEvent();
   setAddPlayersEvent();
   setConfirmPlayersEvent();
+  setToggleAIEvent();
 
   return { render };
 })();
