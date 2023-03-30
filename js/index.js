@@ -194,6 +194,9 @@ const displayController = (() => {
   const newGameButton = document.querySelector('#new-game');
   const addPlayersButtons = document.querySelector('#add-players');
   const playersForm = document.querySelector('#players-form');
+  const confirmPlayersButton = document.querySelector('#confirm-players');
+  const player1Field = document.querySelector('#player1-name');
+  const player2Field = document.querySelector('#player2-name');
 
   const setMessage = (text) => {
     message.textContent = text;
@@ -203,9 +206,22 @@ const displayController = (() => {
     playersForm.classList.toggle('hidden');
   };
 
-  const toggleLockBoard = () => {
+  const confirmPlayers = (e) => {
+    e.preventDefault();
+    game.setPlayer1(player1Field.value, 'X');
+    game.setPlayer2(player2Field.value, 'O');
+    togglePlayersForm();
+  }
+
+  const lockBoard = () => {
     Object.keys(board).forEach((cell) => {
       board[cell].classList.toggle('locked');
+    });
+  };
+
+  const unlockBoard = () => {
+    Object.keys(board).forEach((cell) => {
+      board[cell].classList.remove('locked');
     });
   };
 
@@ -213,7 +229,7 @@ const displayController = (() => {
     game.reset();
     setMessage('Playing');
     displayController.render();
-    toggleLockBoard();
+    unlockBoard();
   };
 
   const markCell = (e) => {
@@ -222,7 +238,7 @@ const displayController = (() => {
     setMessage(result);
     displayController.render();
     if (hasEnded) {
-      toggleLockBoard();
+      lockBoard();
     }
   };
 
@@ -240,6 +256,10 @@ const displayController = (() => {
     addPlayersButtons.addEventListener('click', togglePlayersForm);
   };
 
+  const setConfirmPlayersEvent = () => {
+    confirmPlayersButton.addEventListener('click', confirmPlayers);
+  }
+
   const render = () => {
     const grid = gameBoard.getGrid();
     let index = 0;
@@ -253,6 +273,7 @@ const displayController = (() => {
   setBoardEvents();
   setNewGameEvent();
   setAddPlayersEvent();
+  setConfirmPlayersEvent();
 
   return { render };
 })();
