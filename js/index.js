@@ -3,7 +3,7 @@ const gameBoard = (() => {
   const size = 9;
 
   const add = (position, symbol) => {
-    if (position < 0 || position > size) return 1;
+    if (position < 0 || position > size - 1) return 1;
 
     if (grid[position] !== undefined) return 2;
 
