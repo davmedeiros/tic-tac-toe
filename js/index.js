@@ -88,71 +88,56 @@ const game = (() => {
     let result = '';
     let filledCellsCount = 0;
     const gridSize = gameBoard.getSize();
+
     for (let index = 0; index < gridSize; index += 1) {
       switch (Number(index)) {
         case 0:
-          if (grid[0] && grid[1] && grid[2]) {
-            if (grid[0] === grid[1] && grid[1] === grid[2]) {
-              result = 'win';
-              break;
-            }
+          if (grid[0] && grid[0] === grid[1] && grid[1] === grid[2]) {
+            result = 'win';
+            break;
           }
 
-          if (grid[0] && grid[3] && grid[6]) {
-            if (grid[0] === grid[3] && grid[3] === grid[6]) {
-              result = 'win';
-              break;
-            }
+          if (grid[0] && grid[0] === grid[3] && grid[3] === grid[6]) {
+            result = 'win';
+            break;
           }
 
-          if (grid[0] && grid[4] && grid[8]) {
-            if (grid[0] === grid[4] && grid[4] === grid[8]) {
-              result = 'win';
-              break;
-            }
+          if (grid[0] && grid[0] === grid[4] && grid[4] === grid[8]) {
+            result = 'win';
+            break;
           }
 
           break;
         case 1:
-          if (grid[1] && grid[4] && grid[7]) {
-            if (grid[1] === grid[4] && grid[4] === grid[7]) {
-              result = 'win';
-              break;
-            }
+          if (grid[1] && grid[1] === grid[4] && grid[4] === grid[7]) {
+            result = 'win';
+            break;
           }
 
           break;
         case 2:
-          if (grid[2] && grid[4] && grid[6]) {
-            if (grid[2] === grid[4] && grid[4] === grid[6]) {
-              result = 'win';
-              break;
-            }
+          if (grid[2] && grid[2] === grid[4] && grid[4] === grid[6]) {
+            result = 'win';
+            break;
           }
 
-          if (grid[2] && grid[5] && grid[8]) {
-            if (grid[2] === grid[5] && grid[5] === grid[8]) {
-              result = 'win';
-              break;
-            }
+          if (grid[2] && grid[2] === grid[5] && grid[5] === grid[8]) {
+            result = 'win';
+            break;
           }
 
           break;
         case 3:
-          if (grid[3] && grid[4] && grid[5]) {
-            if (grid[3] === grid[4] && grid[4] === grid[5]) {
-              result = 'win';
-              break;
-            }
+          if (grid[3] && grid[3] === grid[4] && grid[4] === grid[5]) {
+            result = 'win';
+            break;
           }
 
           break;
         case 6:
-          if (grid[6] && grid[7] && grid[8]) {
-            if (grid[6] === grid[7] && grid[7] === grid[8]) {
-              result = 'win';
-              break;
-            }
+          if (grid[6] && grid[6] === grid[7] && grid[7] === grid[8]) {
+            result = 'win';
+            break;
           }
 
           break;
