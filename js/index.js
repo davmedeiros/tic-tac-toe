@@ -21,18 +21,11 @@ const gameBoard = (() => {
 })();
 
 const player = (name, symbol) => {
-  let score = 0;
   let isAI = false;
 
   const getName = () => name;
 
   const getSymbol = () => symbol;
-
-  const getScore = () => score;
-
-  const addPoint = () => {
-    score += 1;
-  };
 
   const isAutomated = () => isAI;
 
@@ -40,7 +33,7 @@ const player = (name, symbol) => {
     isAI = !isAI;
   };
 
-  return { getName, getSymbol, getScore, addPoint, isAutomated, toggleAI };
+  return { getName, getSymbol, isAutomated, toggleAI };
 };
 
 const game = (() => {
@@ -129,8 +122,8 @@ const game = (() => {
   };
 
   const playRound = (index) => {
-    game.markCell(index);
-    const [isWinner, isTie] = game.checkWinner();
+    markCell(index);
+    const [isWinner, isTie] = checkWinner();
 
     if (isWinner) {
       return [`${currentPlayer.getName()} won`, true];
@@ -140,7 +133,7 @@ const game = (() => {
       return [`It's a tie`, true];
     }
 
-    game.switchPlayer();
+    switchPlayer();
 
     if (currentPlayer.isAutomated()) {
       return playRound(runAI());
@@ -155,9 +148,6 @@ const game = (() => {
   return {
     setPlayer1,
     setPlayer2,
-    switchPlayer,
-    markCell,
-    checkWinner,
     getCurrentPlayer,
     playRound,
     reset,
