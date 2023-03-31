@@ -83,74 +83,33 @@ const game = (() => {
 
   const checkWinner = () => {
     const grid = gameBoard.getGrid();
-
-    // TODO: Refractor
     let result = '';
-    let filledCellsCount = 0;
-    const gridSize = gameBoard.getSize();
+    const winningCombos = [
+      [0, 1, 2],
+      [0, 3, 6],
+      [0, 4, 8],
+      [1, 4, 7],
+      [2, 4, 6],
+      [2, 5, 8],
+      [3, 4, 5],
+      [6, 7, 8],
+    ];
 
-    for (let index = 0; index < gridSize; index += 1) {
-      switch (Number(index)) {
-        case 0:
-          if (grid[0] && grid[0] === grid[1] && grid[1] === grid[2]) {
-            result = 'win';
-            break;
-          }
-
-          if (grid[0] && grid[0] === grid[3] && grid[3] === grid[6]) {
-            result = 'win';
-            break;
-          }
-
-          if (grid[0] && grid[0] === grid[4] && grid[4] === grid[8]) {
-            result = 'win';
-            break;
-          }
-
-          break;
-        case 1:
-          if (grid[1] && grid[1] === grid[4] && grid[4] === grid[7]) {
-            result = 'win';
-            break;
-          }
-
-          break;
-        case 2:
-          if (grid[2] && grid[2] === grid[4] && grid[4] === grid[6]) {
-            result = 'win';
-            break;
-          }
-
-          if (grid[2] && grid[2] === grid[5] && grid[5] === grid[8]) {
-            result = 'win';
-            break;
-          }
-
-          break;
-        case 3:
-          if (grid[3] && grid[3] === grid[4] && grid[4] === grid[5]) {
-            result = 'win';
-            break;
-          }
-
-          break;
-        case 6:
-          if (grid[6] && grid[6] === grid[7] && grid[7] === grid[8]) {
-            result = 'win';
-            break;
-          }
-
-          break;
-        default:
-          break;
+    winningCombos.forEach((c) => {
+      if (
+        grid[c[0]] &&
+        grid[c[0]] === grid[c[1]] &&
+        grid[c[1]] === grid[c[2]]
+      ) {
+        result = 'win';
       }
+    });
 
-      if (grid[index]) {
-        filledCellsCount += 1;
-      }
-    }
-
-    if (filledCellsCount === 9 && result !== 'win') {
+    if (
+      !grid.includes(undefined) &&
+      grid.length === gameBoard.getSize() &&
+      result !== 'win'
+    ) {
       return 'tie';
     }
 
