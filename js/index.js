@@ -74,7 +74,7 @@ const game = (() => {
     let index = 0;
     const gameBoardSize = gameBoard.getSize();
 
-    while (grid[index] && grid.length !== gameBoardSize) {
+    while (grid[index] && !grid.includes('')) {
       index = Math.floor(Math.random() * gameBoardSize);
     }
 
