@@ -1,3 +1,4 @@
+// Game board module
 const gameBoard = (() => {
   const grid = [];
   const size = 9;
@@ -28,6 +29,7 @@ const gameBoard = (() => {
   return { add, clear, getGrid, getSize };
 })();
 
+// Player factory
 const player = (name, symbol) => {
   let isAI = false;
 
@@ -44,6 +46,7 @@ const player = (name, symbol) => {
   return { getName, getSymbol, isAutomated, toggleAI };
 };
 
+// Game logic module
 const game = (() => {
   let player1 = {};
   let player2 = {};
@@ -68,6 +71,7 @@ const game = (() => {
   };
 
   const runAI = () => {
+    // TODO: Design proper AI algorithm to make it challenging
     const grid = gameBoard.getGrid();
     let index = 0;
     const gameBoardSize = gameBoard.getSize();
@@ -162,6 +166,7 @@ const game = (() => {
   };
 })();
 
+// Display controller module
 const displayController = (() => {
   const board = document.querySelectorAll('.cell');
   const message = document.querySelector('.message');
