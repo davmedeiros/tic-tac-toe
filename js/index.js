@@ -2,10 +2,16 @@ const gameBoard = (() => {
   const grid = [];
   const size = 9;
 
-  const add = (position, symbol) => {
-    if (position < 0 || position > size - 1) return 1;
+  const init = () => {
+    grid.fill(undefined, 0, size);
+  };
 
-    if (grid[position] !== undefined) return 2;
+  const add = (position, symbol) => {
+    if (!Number.isInteger(Number(position))) return 1;
+
+    if (position < 0 || position > size - 1) return 2;
+
+    if (grid[position] !== undefined) return 3;
 
     grid[position] = symbol;
     return 0;
@@ -16,6 +22,8 @@ const gameBoard = (() => {
   const getGrid = () => grid;
 
   const getSize = () => size;
+
+  init();
 
   return { add, clear, getGrid, getSize };
 })();
