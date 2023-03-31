@@ -116,7 +116,8 @@ const game = (() => {
   };
 
   const markCell = (position) => {
-    gameBoard.add(position, currentPlayer.getSymbol());
+    const status = gameBoard.add(position, currentPlayer.getSymbol());
+    return status;
   };
 
   const getCurrentPlayer = () => currentPlayer;
@@ -127,7 +128,10 @@ const game = (() => {
   };
 
   const playRound = (index) => {
-    markCell(index);
+    const status = markCell(index);
+
+    if (status) return ['Cell already checked', false];
+
     const [isWinner, isTie] = checkWinner();
 
     if (isWinner) {
