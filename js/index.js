@@ -38,7 +38,7 @@ const player = (name, symbol) => {
 
   const toggleAI = () => {
     isAI = !isAI;
-  }
+  };
 
   return { getName, getSymbol, getScore, addPoint, isAutomated, toggleAI };
 };
@@ -59,7 +59,7 @@ const game = (() => {
 
   const toggleAI = () => {
     player2.toggleAI();
-  }
+  };
 
   const switchPlayer = () => {
     if (player1 === currentPlayer) {
@@ -71,11 +71,12 @@ const game = (() => {
 
   const runAI = () => {
     const grid = gameBoard.getGrid();
-    let index = null;
+    let index = 0;
+    const gameBoardSize = gameBoard.getSize();
 
-    do {
-      index = Math.floor(Math.random() * 9);
-    } while (grid[index]);
+    while (grid[index] && grid.length !== gameBoardSize) {
+      index = Math.floor(Math.random() * gameBoardSize);
+    }
 
     return index;
   };
@@ -86,14 +87,14 @@ const game = (() => {
     // TODO: Refractor
     let result = '';
     let filledCellsCount = 0;
-    const gridSize = gameBoard.getSize()
+    const gridSize = gameBoard.getSize();
     for (let index = 0; index < gridSize; index += 1) {
       switch (Number(index)) {
         case 0:
           if (grid[0] && grid[1] && grid[2]) {
             if (grid[0] === grid[1] && grid[1] === grid[2]) {
               result = 'win';
-              return false;
+              break;
             }
           }
 
@@ -236,8 +237,9 @@ const displayController = (() => {
   const toggleAI = () => {
     game.toggleAI();
     const text = toggleAIButton.textContent;
-    toggleAIButton.textContent = text === 'Enable AI' ? 'Disable AI' : 'Enable AI';
-  }
+    toggleAIButton.textContent =
+      text === 'Enable AI' ? 'Disable AI' : 'Enable AI';
+  };
 
   const togglePlayersForm = () => {
     playersForm.classList.toggle('hidden');
@@ -299,7 +301,7 @@ const displayController = (() => {
 
   const setToggleAIEvent = () => {
     toggleAIButton.addEventListener('click', toggleAI);
-  }
+  };
 
   const render = () => {
     const grid = gameBoard.getGrid();
