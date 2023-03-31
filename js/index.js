@@ -199,6 +199,7 @@ const displayController = (() => {
   const lockBoard = () => {
     Object.keys(board).forEach((cell) => {
       board[cell].classList.add('locked');
+      board[cell].classList.remove('keep-color');
     });
   };
 
@@ -206,6 +207,10 @@ const displayController = (() => {
     Object.keys(board).forEach((cell) => {
       board[cell].classList.remove('locked');
     });
+  };
+
+  const lockCell = (cell) => {
+    cell.classList.add('locked', 'keep-color');
   };
 
   const startNewGame = () => {
@@ -216,8 +221,9 @@ const displayController = (() => {
   };
 
   const markCell = (e) => {
-    const cellClicked = e.target.dataset.indexNumber;
-    const [result, hasEnded] = game.playRound(cellClicked);
+    const cellClicked = e.target;
+    const [result, hasEnded] = game.playRound(cellClicked.dataset.indexNumber);
+    lockCell(cellClicked);
     setMessage(result);
     displayController.render();
     if (hasEnded) {

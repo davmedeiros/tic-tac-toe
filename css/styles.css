@@ -78,6 +78,10 @@ button {
   background-color: var(--text);
 }
 
+#game-board > div.locked.keep-color {
+  background-color: var(--cells-color);
+}
+
 #players-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
