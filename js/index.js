@@ -41,13 +41,10 @@ const game = (() => {
   let player2 = {};
   let currentPlayer = {};
 
-  const setPlayer1 = (name, symbol) => {
-    player1 = player(name, symbol);
+  const init = (p1 = player('Player 1', 'X'), p2 = player('Player 2', 'O')) => {
+    player1 = p1;
+    player2 = p2;
     currentPlayer = player1;
-  };
-
-  const setPlayer2 = (name, symbol) => {
-    player2 = player(name, symbol);
   };
 
   const toggleAI = () => {
@@ -142,12 +139,10 @@ const game = (() => {
     return [`${currentPlayer.getName()}'s turn`, false];
   };
 
-  setPlayer1('Player 1', 'X');
-  setPlayer2('Player 2', 'O');
+  init();
 
   return {
-    setPlayer1,
-    setPlayer2,
+    init,
     getCurrentPlayer,
     playRound,
     reset,
@@ -183,8 +178,9 @@ const displayController = (() => {
 
   const confirmPlayers = (e) => {
     e.preventDefault();
-    game.setPlayer1(player1Field.value, 'X');
-    game.setPlayer2(player2Field.value, 'O');
+    const p1 = player(player1Field.value, 'X');
+    const p2 = player(player2Field.value, 'O');
+    game.init(p1, p2);
     togglePlayersForm();
   };
 
