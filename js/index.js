@@ -83,7 +83,8 @@ const game = (() => {
 
   const checkWinner = () => {
     const grid = gameBoard.getGrid();
-    let result = '';
+    let isWinner = false;
+    let isTie = false;
     const winningCombos = [
       [0, 1, 2],
       [0, 3, 6],
@@ -101,19 +102,19 @@ const game = (() => {
         grid[c[0]] === grid[c[1]] &&
         grid[c[1]] === grid[c[2]]
       ) {
-        result = 'win';
+        isWinner = true;
       }
     });
 
     if (
       !grid.includes(undefined) &&
       grid.length === gameBoard.getSize() &&
-      result !== 'win'
+      !isWinner
     ) {
-      return 'tie';
+      isTie = true;
     }
 
-    return result;
+    return [isWinner, isTie];
   };
 
   const markCell = (position) => {
@@ -129,12 +130,13 @@ const game = (() => {
 
   const playRound = (index) => {
     game.markCell(index);
-    const result = game.checkWinner();
-    if (result === 'win') {
+    const [isWinner, isTie] = game.checkWinner();
+
+    if (isWinner) {
       return [`${currentPlayer.getName()} won`, true];
     }
 
-    if (result === 'tie') {
+    if (isTie) {
       return [`It's a tie`, true];
     }
 
