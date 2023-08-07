@@ -27,6 +27,7 @@ const Game = (() => {
 
     const checkForWinner = () => {
         const board = GameBoard.getBoard();
+        let winner = '';
 
         if (board[0] && board[0] === board[1] && board[1] === board[2] ||
             board[3] && board[3] === board[4] && board[4] === board[5] ||
@@ -36,8 +37,10 @@ const Game = (() => {
             board[0] && board[0] === board[3] && board[3] === board[6] ||
             board[1] && board[1] === board[4] && board[4] === board[7] ||
             board[2] && board[2] === board[5] && board[5] === board[8]) {
-            console.log('Winner');
+            winner = Game.getCurrentPlayer();
         }
+
+        return winner;
     }
 
     return { switchPlayer, getCurrentPlayer, checkForWinner }
@@ -59,9 +62,13 @@ const DisplayController = (() => {
 
             cell.addEventListener('click', (cell) => {
                 markCell(cell, Game.getCurrentPlayer().symbol);
-                Game.checkForWinner();
-                Game.switchPlayer();
-            })
+ 
+                if (Game.checkForWinner()) {
+                    console.log('Won');
+                } else {
+                    Game.switchPlayer();
+                }
+            }, { once: true })
 
             cell.textContent = value;
             board.appendChild(cell);
