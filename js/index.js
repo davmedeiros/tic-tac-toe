@@ -1,3 +1,7 @@
+const Player = (name, symbol) => {
+    return { name, symbol };
+}
+
 const GameBoard = (() => {
     const BOARD_SIZE = 9;
     const board = Array(BOARD_SIZE).fill('');
@@ -12,6 +16,8 @@ const GameBoard = (() => {
 
 const DisplayController = (() => {
     const board = document.querySelector('#board');
+    const player1 = Player('Player 1', 'X');
+    const player2 = Player('Player 2', 'O');
 
     const markCell = (cell, symbol) => {
         GameBoard.markCell(cell.target.dataset.indexNumber, symbol);
