@@ -55,7 +55,7 @@ main {
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     gap: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 8px var(--color-shadow);
+    box-shadow: 0 4px 8px var(--color-shadow);
 }
 
 #dock {
@@ -63,11 +63,11 @@ main {
     grid-row: 2 / -1;
     background-color: var(--color-psi);
     border-radius: var(--corner-radius) var(--corner-radius) 0 0;
-    box-shadow: 0 0px 8px var(--color-shadow);
+    box-shadow: 0 0 8px var(--color-shadow);
 }
 
 .cell {
     background-color: var(--color-beta);
-    box-shadow: 2px 2px 4px var(--color-shadow);
+    box-shadow: 4px 4px 4px var(--color-shadow);
     cursor: pointer;
 }
