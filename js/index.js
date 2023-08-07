@@ -14,8 +14,7 @@ const GameBoard = (() => {
     return { getBoard, markCell };
 })();
 
-const DisplayController = (() => {
-    const board = document.querySelector('#board');
+const Game = (() => {
     let player1 = Player('Player 1', 'X');
     let player2 = Player('Player 2', 'O');
     let currentPlayer = player1;
@@ -23,6 +22,14 @@ const DisplayController = (() => {
     const switchPlayer = () => {
         currentPlayer = player1 === currentPlayer ? player2 : player1;
     }
+
+    const getCurrentPlayer = () => currentPlayer;
+
+    return { switchPlayer, getCurrentPlayer }
+})();
+
+const DisplayController = (() => {
+    const board = document.querySelector('#board');
 
     const markCell = (cell, symbol) => {
         GameBoard.markCell(cell.target.dataset.indexNumber, symbol);
@@ -36,8 +43,8 @@ const DisplayController = (() => {
             cell.dataset.indexNumber = index;
 
             cell.addEventListener('click', (cell) => {
-                markCell(cell, currentPlayer.symbol);
-                switchPlayer();
+                markCell(cell, Game.getCurrentPlayer().symbol);
+                Game.switchPlayer();
             })
 
             cell.textContent = value;
