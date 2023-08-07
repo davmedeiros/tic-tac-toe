@@ -25,7 +25,17 @@ const Game = (() => {
 
     const getCurrentPlayer = () => currentPlayer;
 
-    return { switchPlayer, getCurrentPlayer }
+    const checkForWinner = () => {
+        const board = GameBoard.getBoard();
+
+        if (board[0] && board[0] === board[1] && board[1] === board[2] ||
+            board[3] && board[3] === board[4] && board[4] === board[5] ||
+            board[6] && board[6] === board[7] && board[7] === board[8]) {
+            console.log('Winner');
+        }
+    }
+
+    return { switchPlayer, getCurrentPlayer, checkForWinner }
 })();
 
 const DisplayController = (() => {
@@ -44,6 +54,7 @@ const DisplayController = (() => {
 
             cell.addEventListener('click', (cell) => {
                 markCell(cell, Game.getCurrentPlayer().symbol);
+                Game.checkForWinner();
                 Game.switchPlayer();
             })
 
