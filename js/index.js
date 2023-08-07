@@ -19,3 +19,5 @@ const DisplayController = (() => {
 
     return { showBoard };
 })();
+
+DisplayController.showBoard();

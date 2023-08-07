@@ -13,6 +13,7 @@
     --color-on-light: black;
     --color-on-dark: white;
     --color-background: white;
+    --color-shadow: rgba(0, 0, 0, 0.4);
 
     /* Brand colors */
     --color-alpha: #8CC0DE;
@@ -49,9 +50,12 @@ main {
     grid-column: 3 / 5;
     grid-row: 1 / 2;
     background-color: var(--color-alpha);
-    border-top: 50px solid var(--color-omega);
     margin-top: var(--gap-size);
-    border-radius: var(--gap-size) var(--gap-size) 0 0;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    gap: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--color-shadow);
 }
 
 #dock {
@@ -59,4 +63,11 @@ main {
     grid-row: 2 / -1;
     background-color: var(--color-psi);
     border-radius: var(--corner-radius) var(--corner-radius) 0 0;
+    box-shadow: 0 0px 8px var(--color-shadow);
+}
+
+.cell {
+    background-color: var(--color-beta);
+    box-shadow: 2px 2px 4px var(--color-shadow);
+    cursor: pointer;
 }
