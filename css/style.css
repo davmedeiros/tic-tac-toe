@@ -25,4 +25,38 @@
     --color-error: #C51605;
     --color-valid: #CECE5A;
     --color-warning: #FD8D14;
+
+    /* Sizes */
+    --gap-size: 50px;
+    --corner-radius: 16px;
+}
+
+body {
+    min-height: 100svh;
+    display: grid;
+    grid-template: 1fr / 1fr;
+    justify-content: center;
+}
+
+main {
+    display: grid;
+    grid-template: 720px 1fr / 1fr repeat(4, 310px) 1fr;
+    justify-content: center;
+    gap: var(--gap-size);
+}
+
+#board {
+    grid-column: 3 / 5;
+    grid-row: 1 / 2;
+    background-color: var(--color-alpha);
+    border-top: 50px solid var(--color-omega);
+    margin-top: var(--gap-size);
+    border-radius: var(--gap-size) var(--gap-size) 0 0;
+}
+
+#dock {
+    grid-column: 2 / 6;
+    grid-row: 2 / -1;
+    background-color: var(--color-psi);
+    border-radius: var(--corner-radius) var(--corner-radius) 0 0;
 }
