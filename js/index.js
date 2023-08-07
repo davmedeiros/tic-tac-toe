@@ -48,6 +48,7 @@ const Game = (() => {
 
 const DisplayController = (() => {
     const board = document.querySelector('#board');
+    const message = document.querySelector('#message')
 
     const markCell = (cell, symbol) => {
         GameBoard.markCell(cell.target.dataset.indexNumber, symbol);
@@ -64,9 +65,10 @@ const DisplayController = (() => {
                 markCell(cell, Game.getCurrentPlayer().symbol);
  
                 if (Game.checkForWinner()) {
-                    console.log('Won');
+                    message.textContent = `${Game.getCurrentPlayer().name} won the game`;
                 } else {
                     Game.switchPlayer();
+                    message.textContent = `${Game.getCurrentPlayer().name}'s turn`
                 }
             }, { once: true })
 

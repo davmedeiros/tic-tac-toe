@@ -64,6 +64,9 @@ main {
     background-color: var(--color-psi);
     border-radius: var(--corner-radius) var(--corner-radius) 0 0;
     box-shadow: 0 0 8px var(--color-shadow);
+    display: grid;
+    justify-content: center;
+    align-items: center;
 }
 
 .cell {
@@ -75,4 +78,8 @@ main {
     align-items: center;
     font-size: 8rem;
     font-weight: bold;
+}
+
+#message {
+    font-size: 4rem;
 }
