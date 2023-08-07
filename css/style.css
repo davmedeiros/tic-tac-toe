@@ -70,4 +70,9 @@ main {
     background-color: var(--color-beta);
     box-shadow: 4px 4px 4px var(--color-shadow);
     cursor: pointer;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 8rem;
+    font-weight: bold;
 }
