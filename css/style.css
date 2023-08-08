@@ -101,7 +101,8 @@ button {
     cursor: pointer;
 }
 
-#controls button {
+#controls button,
+#settings-menu button {
     height: 50px;
     width: 200px;
     border: none;
