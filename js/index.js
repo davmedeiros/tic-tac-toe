@@ -112,9 +112,18 @@ const DisplayController = (() => {
         showBoard();
     }
 
+    const showSettings = () => {
+        const main = document.querySelector('main');
+        const settingsMenu = document.createElement('div');
+        settingsMenu.id = 'settings-menu';
+        main.appendChild(settingsMenu);
+    }
+
     const addBehaviorToControls = () => {
         const start = document.querySelector('#start');
         start.addEventListener('click', startGame);
+        const settings = document.querySelector('#settings');
+        settings.addEventListener('click', showSettings);
     }
 
     showBoard();

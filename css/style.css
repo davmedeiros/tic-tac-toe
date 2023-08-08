@@ -109,3 +109,15 @@ button {
     font-size: 2rem;
     background-color: var(--color-gamma);
 }
+
+#settings-menu {
+    position: fixed;
+    justify-self: center;
+    align-self: center;
+    height: 500px;
+    width: 500px;
+    z-index: 9;
+    background-color: var(--color-omega);
+    border-radius: var(--corner-radius);
+    box-shadow: 0 5px 8px var(--color-shadow);
+}
