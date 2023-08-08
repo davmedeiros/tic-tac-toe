@@ -67,6 +67,8 @@ main {
     display: grid;
     justify-content: center;
     align-items: center;
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 80%;
 }
 
 .cell {
@@ -82,4 +84,26 @@ main {
 
 #message {
     font-size: 4rem;
+    background-color: var(--color-omega);
+    border-radius: var(--corner-radius);
+    text-align: center;
+    padding: 5px;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+#controls button {
+    padding: 10px 60px;
+    border: none;
+    border-radius: var(--corner-radius);
+    font-size: 2rem;
+    background-color: var(--color-gamma);
 }

@@ -102,6 +102,10 @@ const DisplayController = (() => {
         })
     }
 
+    const addBehaviorToControls = () => {
+        const start = document.querySelector('#start');
+    }
+
     return { showBoard };
 })();
 
