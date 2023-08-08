@@ -70,26 +70,25 @@ const DisplayController = (() => {
         cell.target.textContent = symbol;
     }
 
+    const playRound = (cell) => {
+        markCell(cell, Game.getCurrentPlayer().symbol);
+    
+        if (Game.checkForWinner()) {
+            message.textContent = `${Game.getCurrentPlayer().name} won the game`;
+        } else if (Game.checkForTie()) {
+            message.textContent = `It's a tie`;
+        } else {
+            Game.switchPlayer();
+            message.textContent = `${Game.getCurrentPlayer().name}'s turn`
+        }
+    }
+
     const showBoard = () => {
         GameBoard.getBoard().forEach((value, index) => {
             const cell = document.createElement('div');
             cell.classList.add('cell');
             cell.dataset.indexNumber = index;
-
-            cell.addEventListener('click', (cell) => {
-                markCell(cell, Game.getCurrentPlayer().symbol);
- 
-                if (Game.checkForWinner()) {
-                    message.textContent = `${Game.getCurrentPlayer().name} won the game`;
-                    // lockBoard();
-                } else if (Game.checkForTie()) {
-                    message.textContent = `It's a tie`;
-                } else {
-                    Game.switchPlayer();
-                    message.textContent = `${Game.getCurrentPlayer().name}'s turn`
-                }
-            }, { once: true })
-
+            cell.addEventListener('click', playRound, { once: true })
             cell.textContent = value;
             board.appendChild(cell);
         })
