@@ -11,7 +11,13 @@ const GameBoard = (() => {
         board[index] = symbol;
     }
 
-    return { getBoard, markCell };
+    const clear = () => {
+        board.forEach(value => {
+            value = '';
+        });
+    }
+
+    return { getBoard, markCell, clear };
 })();
 
 const Game = (() => {
@@ -43,7 +49,16 @@ const Game = (() => {
         return winner;
     }
 
-    return { switchPlayer, getCurrentPlayer, checkForWinner }
+    const reset = () => {
+        GameBoard.clear();
+    }
+
+    const checkForTie = () => {
+        const board = GameBoard.getBoard();
+        return board.every(value => value !== '');
+    }
+
+    return { switchPlayer, getCurrentPlayer, checkForWinner, reset, checkForTie }
 })();
 
 const DisplayController = (() => {
@@ -66,6 +81,9 @@ const DisplayController = (() => {
  
                 if (Game.checkForWinner()) {
                     message.textContent = `${Game.getCurrentPlayer().name} won the game`;
+                    // lockBoard();
+                } else if (Game.checkForTie()) {
+                    message.textContent = `It's a tie`;
                 } else {
                     Game.switchPlayer();
                     message.textContent = `${Game.getCurrentPlayer().name}'s turn`
