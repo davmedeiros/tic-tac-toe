@@ -120,4 +120,21 @@ button {
     background-color: var(--color-omega);
     border-radius: var(--corner-radius);
     box-shadow: 0 5px 8px var(--color-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--gap-size)
+}
+
+#settings-menu input {
+    border: none;
+    padding: 16px;
+    font-size: 1.3rem;
+    border-radius: var(--corner-radius);
+}
+
+#settings-menu input:focus {
+    box-shadow: 0 4px 8px var(--color-shadow);
+    outline: none;
 }

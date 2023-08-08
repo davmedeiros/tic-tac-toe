@@ -116,6 +116,21 @@ const DisplayController = (() => {
         const main = document.querySelector('main');
         const settingsMenu = document.createElement('div');
         settingsMenu.id = 'settings-menu';
+        const player1Name = document.createElement('input');
+        player1Name.type = 'text';
+        player1Name.id = 'player-1-name';
+        player1Name.placeholder = 'Player 1';
+        const player2Name = document.createElement('input');
+        player2Name.type = 'text';
+        player2Name.id = 'player-2-name';
+        player2Name.placeholder = 'Player 2';
+        const save = document.createElement('button');
+        save.type = 'button';
+        save.id = 'save';
+        save.textContent = 'Save';
+        settingsMenu.appendChild(player1Name);
+        settingsMenu.appendChild(player2Name);
+        settingsMenu.appendChild(save);
         main.appendChild(settingsMenu);
     }
 
