@@ -136,6 +136,7 @@ const DisplayController = (() => {
 
         save.addEventListener('click', () => {
             Game.setPlayerNames(player1Name.value, player2Name.value);
+            settingsMenu.remove();
         });
 
         settingsMenu.appendChild(player1Name);
