@@ -4,7 +4,7 @@ const Player = (name, symbol) => {
 
 const GameBoard = (() => {
     const BOARD_SIZE = 9;
-    const board = Array(BOARD_SIZE).fill('');
+    let board = Array(BOARD_SIZE).fill('');
     const getBoard = () => board;
 
     const markCell = (index, symbol) => {
@@ -12,9 +12,7 @@ const GameBoard = (() => {
     }
 
     const clear = () => {
-        board.forEach(value => {
-            value = '';
-        });
+        board = board.map(value => value = '');
     }
 
     return { getBoard, markCell, clear };
@@ -102,11 +100,23 @@ const DisplayController = (() => {
         })
     }
 
-    const addBehaviorToControls = () => {
-        const start = document.querySelector('#start');
+    const clearBoard = () => {
+        while (board.firstChild) {
+            board.removeChild(board.firstChild);
+        }
     }
 
-    return { showBoard };
-})();
+    const startGame = () => {
+        Game.reset();
+        clearBoard();
+        showBoard();
+    }
 
-DisplayController.showBoard();
+    const addBehaviorToControls = () => {
+        const start = document.querySelector('#start');
+        start.addEventListener('click', startGame);
+    }
+
+    showBoard();
+    addBehaviorToControls();
+})();
