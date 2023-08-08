@@ -94,6 +94,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: var(--gap-size)
 }
 
 button {
@@ -101,7 +102,8 @@ button {
 }
 
 #controls button {
-    padding: 10px 60px;
+    height: 50px;
+    width: 200px;
     border: none;
     border-radius: var(--corner-radius);
     font-size: 2rem;
