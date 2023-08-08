@@ -61,7 +61,11 @@ const Game = (() => {
         player2.name = player2NewName;
     }
 
-    return { switchPlayer, getCurrentPlayer, checkForWinner, reset, checkForTie, setPlayerNames }
+    const getPlayer1Name = () => player1.name;
+
+    const getPlayer2Name = () => player2.name;
+
+    return { switchPlayer, getCurrentPlayer, checkForWinner, reset, checkForTie, setPlayerNames, getPlayer1Name, getPlayer2Name }
 })();
 
 const DisplayController = (() => {
@@ -124,11 +128,11 @@ const DisplayController = (() => {
         const player1Name = document.createElement('input');
         player1Name.type = 'text';
         player1Name.id = 'player-1-name';
-        player1Name.value = 'Player 1';
+        player1Name.value = Game.getPlayer1Name();
         const player2Name = document.createElement('input');
         player2Name.type = 'text';
         player2Name.id = 'player-2-name';
-        player2Name.value = 'Player 2';
+        player2Name.value = Game.getPlayer2Name();
         const save = document.createElement('button');
         save.type = 'button';
         save.id = 'save';
