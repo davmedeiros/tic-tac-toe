@@ -70,11 +70,19 @@ const DisplayController = (() => {
         cell.target.textContent = symbol;
     }
 
+    const lockBoard = () => {
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => {
+            cell.removeEventListener('click', playRound);
+        });
+    }
+
     const playRound = (cell) => {
         markCell(cell, Game.getCurrentPlayer().symbol);
     
         if (Game.checkForWinner()) {
             message.textContent = `${Game.getCurrentPlayer().name} won the game`;
+            lockBoard();
         } else if (Game.checkForTie()) {
             message.textContent = `It's a tie`;
         } else {
