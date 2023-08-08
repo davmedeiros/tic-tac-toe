@@ -122,8 +122,14 @@ const DisplayController = (() => {
     }
 
     const showSettings = () => {
+        let settingsMenu = document.querySelector('#settings-menu');
+
+        if (settingsMenu) {
+            settingsMenu.remove();
+        }
+
         const main = document.querySelector('main');
-        const settingsMenu = document.createElement('div');
+        settingsMenu = document.createElement('div');
         settingsMenu.id = 'settings-menu';
         const player1Name = document.createElement('input');
         player1Name.type = 'text';
