@@ -56,7 +56,12 @@ const Game = (() => {
         return board.every(value => value !== '');
     }
 
-    return { switchPlayer, getCurrentPlayer, checkForWinner, reset, checkForTie }
+    const setPlayerNames = (player1NewName = player1.name, player2NewName = player2.name) => {
+        player1.name = player1NewName;
+        player2.name = player2NewName;
+    }
+
+    return { switchPlayer, getCurrentPlayer, checkForWinner, reset, checkForTie, setPlayerNames }
 })();
 
 const DisplayController = (() => {
@@ -119,15 +124,20 @@ const DisplayController = (() => {
         const player1Name = document.createElement('input');
         player1Name.type = 'text';
         player1Name.id = 'player-1-name';
-        player1Name.placeholder = 'Player 1';
+        player1Name.value = 'Player 1';
         const player2Name = document.createElement('input');
         player2Name.type = 'text';
         player2Name.id = 'player-2-name';
-        player2Name.placeholder = 'Player 2';
+        player2Name.value = 'Player 2';
         const save = document.createElement('button');
         save.type = 'button';
         save.id = 'save';
         save.textContent = 'Save';
+
+        save.addEventListener('click', () => {
+            Game.setPlayerNames(player1Name.value, player2Name.value);
+        });
+
         settingsMenu.appendChild(player1Name);
         settingsMenu.appendChild(player2Name);
         settingsMenu.appendChild(save);
