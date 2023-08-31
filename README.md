@@ -1,2 +1,1 @@
-# tic-tac-toe
-TOP - Tic Tac Toe
+# TOP - Educational Project - Tic Tac Toe
